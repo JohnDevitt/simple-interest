@@ -3,10 +3,20 @@
 import { interestRateFormSchema } from "@/schemas/compountInterestForm";
 import { z } from "zod";
 import CompoundInterestForm from "@/forms/compoundInterestForm";
+import { calculateSimpleInterest } from "@/lib/simpleInterest";
 
 export default function Home() {
   function onSubmit(values: z.infer<typeof interestRateFormSchema>) {
-    console.log(values);
+    const { startDate, endDate, principal, baseInterestRate, margin } = values;
+    const loanData = calculateSimpleInterest(
+      startDate,
+      endDate,
+      principal,
+      baseInterestRate,
+      margin
+    );
+
+    console.log(loanData);
   }
 
   return (
