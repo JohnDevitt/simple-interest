@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/select";
 import PercentageField from "./percentageField";
 import { Button } from "@/components/ui/button";
+import { Loan } from "@/interfaces";
 
 interface Props {
   onSubmit: (values: {
@@ -33,18 +34,20 @@ interface Props {
     baseInterestRate: number;
     margin: number;
   }) => void;
+  defaultValues?: Loan;
 }
 
-const CompoundInterestForm = ({ onSubmit }: Props) => {
+const CompoundInterestForm = ({ onSubmit, defaultValues }: Props) => {
   const form = useForm<z.infer<typeof interestRateFormSchema>>({
     resolver: zodResolver(interestRateFormSchema),
+    defaultValues,
   });
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-2 flex flex-col"
+        className="flex flex-col gap-4"
       >
         <DateField
           control={form.control}
@@ -134,7 +137,9 @@ const CompoundInterestForm = ({ onSubmit }: Props) => {
             All fields required*
           </div>
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="w-full pt-2">
+            {defaultValues ? "Edit" : "Submit"}
+          </Button>
         </div>
       </form>
     </Form>

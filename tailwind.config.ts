@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
 export default {
+	purge: [
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
     darkMode: ["class"],
     content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",

@@ -35,7 +35,7 @@ export const DateField = <T extends FieldValues>({
     control={control}
     name={name}
     render={({ field }) => (
-      <FormItem className="flex flex-col">
+      <FormItem className="flex flex-col mt-4">
         <FormLabel>{label}</FormLabel>
         <Popover>
           <PopoverTrigger asChild>
