@@ -1,5 +1,6 @@
 
 import { Loan } from '@/interfaces';
+import {v4 as uuidv4} from 'uuid';
 import { create } from 'zustand'
 export interface LoanStore {
   loans: Loan[];
@@ -13,7 +14,7 @@ export const useImitationAPI = create<LoanStore>((set, get) => ({
   addLoan: (loan) => {
     const newLoan: Loan = {
       ...loan,
-      id: crypto.randomUUID(),
+      id: uuidv4()
     };
     set((state) => ({ loans: [...state.loans, newLoan] }));
   },

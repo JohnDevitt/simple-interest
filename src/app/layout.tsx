@@ -35,7 +35,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex flex-col items-center justify-items-center min-h-screen p-8 pb-2 sm:p-12 font-[family-name:var(--font-geist-sans)]">
+            {children}
+          </div>
         </ThemeProvider>
         <Toaster />
       </body>

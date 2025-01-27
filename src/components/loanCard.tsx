@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -8,29 +6,15 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "./ui/chart";
 import { generateLoanTitle } from "@/lib/utils";
 import { Loan } from "@/interfaces";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 import { calculateSimpleInterest } from "@/lib/simpleInterest";
 
 interface Props {
   loan: Loan;
 }
-
-const chartConfig = {
-  interestAccrued: {
-    label: "Interest",
-    color: "#2563eb",
-  },
-} satisfies ChartConfig;
 
 const LoanCard = ({ loan }: Props) => {
   const router = useRouter();
@@ -43,11 +27,6 @@ const LoanCard = ({ loan }: Props) => {
     loan.baseInterestRate,
     loan.margin
   );
-
-  const chartData = loanData.map(({ date, interestAccrued }) => ({
-    date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
-    interestAccrued,
-  }));
 
   const dailyInterest = loanData[loanData.length - 1].dailyInterest;
 
@@ -72,7 +51,7 @@ const LoanCard = ({ loan }: Props) => {
             </span>
             <span className="font-bold leading-none">
               {loan.currency}{" "}
-              {chartData[chartData.length - 1].interestAccrued.toFixed(2)}
+              {loanData[loanData.length - 1].interestAccrued.toFixed(2)}
             </span>
           </div>
           <div className="flex flex-1 flex-col items-center justify-center gap-1 border-l">
@@ -80,6 +59,7 @@ const LoanCard = ({ loan }: Props) => {
               Daily Interest
             </span>
             <span className="font-bold leading-none">
+              {"~"}
               {loan.currency} {dailyInterest.toFixed(2)}
             </span>
           </div>

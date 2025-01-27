@@ -6,10 +6,10 @@ interface Props<T extends FieldValues> {
 }
 
 const PercentageInput = <T extends FieldValues>({ field }: Props<T>) => (
-  <div className="flex items-center w-32">
+  <div className="flex items-center w-24">
     <Input
       type="number"
-      placeholder="25"
+      placeholder="2.5"
       {...field}
       onChange={(event) => field.onChange(Number(event.target.value))}
       className="mr-2"

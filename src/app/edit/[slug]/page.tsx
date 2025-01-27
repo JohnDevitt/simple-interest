@@ -9,11 +9,7 @@ import { useImitationAPI } from "@/store/store";
 import { useToast } from "@/hooks/use-toast";
 import { generateLoanTitle } from "@/lib/utils";
 
-export default function EditLoan({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+const EditLoan = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { updateLoan, getLoan } = useImitationAPI((state) => state);
@@ -43,8 +39,8 @@ export default function EditLoan({
   };
 
   return (
-    <div className="flex flex-col items-center justify-items-center min-h-screen p-8 pb-2 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <div className="flex gap-x-8">
+    <main className="flex-grow w-full flex flex-col items-center justify-start md:justify-center">
+      <div className="flex items-center gap-8">
         <Button variant="outline" size="icon" onClick={() => router.push("/")}>
           <ArrowLeft />
         </Button>
@@ -54,11 +50,11 @@ export default function EditLoan({
         </h2>
       </div>
 
-      <main className="flex-grow w-full flex flex-col items-center justify-start md:justify-center">
-        <div className="flex gap-4 justify-between pt-8">
-          <CompoundInterestForm onSubmit={onSubmit} defaultValues={loan} />
-        </div>
-      </main>
-    </div>
+      <div className="flex flex-grow items-start sm:items-center gap-4 pt-8">
+        <CompoundInterestForm onSubmit={onSubmit} defaultValues={loan} />
+      </div>
+    </main>
   );
-}
+};
+
+export default EditLoan;

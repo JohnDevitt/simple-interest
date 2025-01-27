@@ -74,6 +74,7 @@ const CompoundInterestForm = ({ onSubmit, defaultValues }: Props) => {
                   <Input
                     placeholder="1000"
                     {...field}
+                    value={field.value ?? ""}
                     onChange={(event) =>
                       field.onChange(Number(event.target.value))
                     }
@@ -93,6 +94,7 @@ const CompoundInterestForm = ({ onSubmit, defaultValues }: Props) => {
               <FormItem className="flex-shrink-0">
                 <FormLabel>Currency</FormLabel>
                 <Select
+                  {...field}
                   onValueChange={field.onChange}
                   defaultValue={CurrencyCode.USD}
                 >
